@@ -1,0 +1,40 @@
+<div class="container" style="padding-top: 80px;">
+    <p>AGREGAR PELICULA</p>
+    <div class="row">
+        <div class="col-sm-6">
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Título</label>
+                    <input [(ngModel)]="movie.mov_title" type="text" class="form-control" name="title">
+                </div>  
+                <div class="mb-3">
+                    <label class="form-label">Año</label>
+                    <input [(ngModel)]="movie.mov_year" type="text" class="form-control" name="year"> 
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Duración</label>
+                    <input [(ngModel)]="movie.mov_time" type="text" class="form-control" name="time">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Idioma</label>
+                    <input [(ngModel)]="movie.mov_lang" type="text" class="form-control" name="lang">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Rel</label>
+                    <input [(ngModel)]="movie.mov_dt_rel" type="text" class="form-control" name="rel">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Pais</label>
+                    <input [(ngModel)]="movie.mov_rel_country" type="text" class="form-control" name="country">
+                </div>
+                <button (click)="agregar()" class="btn btn-success">Agregar</button>            
+            </form>
+        </div>
+        <div class="col-sm-6">
+    
+        </div>
+
+    </div>
+
+
+</div>
