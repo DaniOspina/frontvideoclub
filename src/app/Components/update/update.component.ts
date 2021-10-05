@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router'; 
 import { ApiserviceService, Movie } from 'src/app/services/apiservice.service';
+
+
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css']
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
-export class AddComponent implements OnInit {
+export class UpdateComponent implements OnInit {
 
   movie: Movie={
     mov_id:'',
@@ -17,14 +19,28 @@ export class AddComponent implements OnInit {
     mov_dt_rel:'',
     mov_rel_country:'',
   };
+
   date = new Date().getFullYear();
   checkCounter:boolean[] = [false, false, false, false, false, false]
-
-  constructor(private service:ApiserviceService,private router:ActivatedRoute,private routerlink:Router) { }
+  
+  constructor(private router:Router,
+              private activeRoute:ActivatedRoute,
+              private service:ApiserviceService) { }
 
   ngOnInit(): void {
+    const mov_id = <string>this.activeRoute.snapshot.params.id;
+    console.log(mov_id)
+    if(mov_id){
+      this.service.getOneMovie(mov_id).subscribe(
+        res=>{
+          this.movie = res[0];
+          console.log(res[0]);
+        },
+        err=>console.log(err)
+      );
+    }
   }
-
+  
   checkInputs(){
     const title = document.getElementById('alert-title')
     const year = document.getElementById('alert-year')
@@ -35,7 +51,6 @@ export class AddComponent implements OnInit {
     const numRegex = new RegExp('^[0-9]+$');
     const letterRegex = /^[a-zA-Zñ]+$/
     const dateRegex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
-    
     if (this.movie.mov_title!.length < 2) {
       this.checkCounter[0] = false
       title!.classList.add('show')
@@ -81,14 +96,20 @@ export class AddComponent implements OnInit {
     console.log(this.checkCounter)
     const checked = this.checkCounter.filter(check => check === true)
     if (checked.length === 6){
-      this.add()
-    }
+      this.update()
+    } 
   }
 
-  add(){
-    delete this.movie.mov_id;
-    this.service.addMovie(this.movie).subscribe();
-    this.routerlink.navigate(['/home']);
+  update() {
+
+    this.service.updateMovie(this.movie, this.movie.mov_id).subscribe(
+      res=>{
+        console.log(res);
+      },
+      err=>console.log(err)
+    );
+
+    this.router.navigate(['/home']);
   }
 
 }

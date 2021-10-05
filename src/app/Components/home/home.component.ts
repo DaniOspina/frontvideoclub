@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Movie, MovieService} from '../../Services/Unit/unit.service';
-import { Router} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
+import { ApiserviceService, Movie } from 'src/app/services/apiservice.service';
 
 @Component({
   selector: 'app-home',
@@ -9,37 +9,55 @@ import { Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  ListarMovies:any=[];
-  constructor(private MovieService:MovieService, private router:Router) { }
+  //varibale
+  ListMovie: Movie[] = [];
+
+  constructor(private service:ApiserviceService,private router:ActivatedRoute,
+    private routerlink:Router) { }
 
   ngOnInit(): void {
-    this.listarMovies();
+    this.listMovie();
+  }
+title = ''
+searchMovies(){
+  console.log(this.title)
+  this.service.searchMovies(this.title).subscribe(
+    res => {
+      this.ListMovie=<any>res;
+      console.log(res)
+    },
+    err => console.log(err)
+  )
+}
+  fixDate(date:string) {
+    const newDate:string[] = date.split('-')
+    return [newDate[2].split('T')[0], newDate[1], newDate[0]].join('-')
   }
 
-  listarMovies()
+  listMovie()
   {
-    this.MovieService.getMovies().subscribe(
-      res =>{
-        console.log(res)
-        this.ListarMovies=<any>res;
+    this.service.getMovies().subscribe(
+      res=>{
+        this.ListMovie=<any>res;
       },
       err => console.log(err)
     );
   }
 
-  eliminar(id:string)
+
+  
+
+  delete(id:string)
   {
-    this.MovieService.deleteMovie(id).subscribe(
+    this.service.deleteMovie(id).subscribe(
       res=>{
-        console.log('movie delete');
-        this.listarMovies();
+        this.listMovie();
       },
       err=> console.log(err)
       );
   }
 
-  modificar(id:string){
-    this.router.navigate(['/edit/'+id])
+  update(id:string){
+    this.routerlink.navigate(['/update/'+id]);
   }
-
 }

@@ -1,0 +1,52 @@
+h1 { 
+  font-size: 4rem;
+}
+
+h2 {
+  margin-top: 5rem;
+  font-size: 1.8rem;
+}
+
+a{
+  font-size: 2rem;
+}
+.container {
+margin-top: 20vh;
+}
+
+tr:hover {
+  background-color: #00296B20;
+}
+
+input::placeholder {
+  color: #00296B80;
+  opacity: 1;
+  transition: all 0.7s ease;
+}
+
+input:focus::placeholder {
+  opacity: 0;
+  transition: all 0.7s ease;
+}
+
+.btn-fas {
+  width: 40px;
+  height: 40px;
+}
+@media screen and (max-width:768px) {
+  .btn-fas {
+    margin: 5px 0;
+  }
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width:480px) {
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+

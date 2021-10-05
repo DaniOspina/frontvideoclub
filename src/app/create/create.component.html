@@ -1,0 +1,38 @@
+<div class="container-fluid mt-5 ">
+
+  <!-- show error message -->
+  <div *ngIf="errorMsg" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{errorMsg}}</strong>
+    <button type="button" class="btn btn-primary" data-bs-dismiss="alert" (click)="errorMsg=false"
+      aria-label="Close"></button>
+  </div>
+  <div *ngIf="successMsg" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{successMsg}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <form class="centerPrueba" (ngSubmit)="userSubmit()">
+    <div class="col-lg-4 mt-2">
+      <input type="text" class="form-control" formControlName="mov_title" placeholder="Title">
+    </div>
+    <div class="col-lg-4 mt-2">
+      <input type="text" class="form-control" formControlName="mov_dt_rel" placeholder="Released date">
+    </div>
+    <div class="col-lg-4 mt-2">
+      <input type="text" class="form-control" formControlName="mov_rel_country" placeholder="Released country">
+    </div>
+    <div class="col-lg-4 mt-2">
+      <input type="text" class="form-control" formControlName="mov_lang" placeholder="Lenguage">
+    </div>
+    <div class="col-lg-4 mt-2" *ngIf="!getparamId" (click)="userSubmit()">
+      <button class="btn btn-primary btn-sm">Create</button>
+    </div>
+
+    <div class="col-lg-4 mt-2" *ngIf="getparamId" (click)="userUpdate()">
+      <button class="btn btn-primary btn-sm">Update</button>
+    </div>
+
+  </form>
+
+
+</div>

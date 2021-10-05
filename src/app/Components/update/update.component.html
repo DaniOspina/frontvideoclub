@@ -1,5 +1,5 @@
 <div class="container-fluid add"> 
-  <h1 class="text-center mt-5">Agregar Pelicula</h1>
+  <h1 class="text-center mt-5">Actualizar Pelicula</h1>
   <form class="d-flex flex-column justify-content-center align-items-center">
     <div class="container">
       <div class="row my-2">
@@ -20,16 +20,16 @@
           <input [(ngModel)]="movie.mov_time" type="text" class="form-control" [ngModelOptions]="{standalone: true}" required>
           <span class="myAlert" id="alert-time"><em>La duración deben ser numeros.</em></span>
         </div>
-      </div> 
+      </div>
       <div class="row my-2">
         <div class="col">
           <label class="form-label">Idioma</label>
-          <input [(ngModel)]="movie.mov_lang" type="text" class="form-control" [ngModelOptions]="{standalone: true}" required>
+          <input [(ngModel)]="movie.mov_lang"  value="movie.mov_lang" type="text" class="form-control" [ngModelOptions]="{standalone: true}" required>
           <span class="myAlert" id="alert-lang"><em>El idioma debe contener minimo 2 letras.</em></span>
         </div>
         <div class="col">
           <label class="form-label">Fecha</label>
-          <input [(ngModel)]="movie.mov_dt_rel" type="date" class="form-control" [ngModelOptions]="{standalone: true}" required>
+          <input [(ngModel)]="movie.mov_dt_rel" value="mov_dt_rel" type="date" class="form-control" [ngModelOptions]="{standalone: true}" required>
           <span class="myAlert" id="alert-date"><em>Debe ingresar la fecha en el formato AAAA-MM-DD.</em></span>
         </div>
         <div class="col">
@@ -45,7 +45,7 @@
       Regresar
     </button>
     <button (click)="checkInputs()" class="btn btn-add" type="submit">
-      Agregar
+      Actualizar
     </button>
   </div>
 </div>
