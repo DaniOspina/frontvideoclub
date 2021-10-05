@@ -6,45 +6,36 @@
         <div class="col">
           <label class="form-label">Titulo</label>
           <input [(ngModel)]="movie.mov_title" type="text" class="form-control" [ngModelOptions]="{standalone: true}" required>
-          <span class="myAlert" id="alert-title"><em>El titulo debe contener minimo 2 letras.</em></span>
         </div>
       </div>
       <div class="row my-2">
         <div class="col">
           <label class="form-label">Año</label>
           <input [(ngModel)]="movie.mov_year" type="text" class="form-control" [ngModelOptions]="{standalone: true}" required>
-          <span class="myAlert" id="alert-year"><em>El año debe tener 4 digitos, estar entre 1888 y {{date}}.</em></span>
         </div>
         <div class="col">
           <label class="form-label">Duración</label>
           <input [(ngModel)]="movie.mov_time" type="text" class="form-control" [ngModelOptions]="{standalone: true}" required>
-          <span class="myAlert" id="alert-time"><em>La duración deben ser numeros.</em></span>
         </div>
       </div> 
       <div class="row my-2">
         <div class="col">
           <label class="form-label">Idioma</label>
           <input [(ngModel)]="movie.mov_lang" type="text" class="form-control" [ngModelOptions]="{standalone: true}" required>
-          <span class="myAlert" id="alert-lang"><em>El idioma debe contener minimo 2 letras.</em></span>
         </div>
         <div class="col">
           <label class="form-label">Fecha</label>
           <input [(ngModel)]="movie.mov_dt_rel" type="date" class="form-control" [ngModelOptions]="{standalone: true}" required>
-          <span class="myAlert" id="alert-date"><em>Debe ingresar la fecha en el formato AAAA-MM-DD.</em></span>
         </div>
         <div class="col">
           <label class="form-label">País</label>
           <input [(ngModel)]="movie.mov_rel_country" type="text" class="form-control" [ngModelOptions]="{standalone: true}" required>
-          <span class="myAlert" id="alert-country"><em>El país debe contener minimo 2 letras.</em></span>
         </div>
       </div>
     </div>
   </form>
   <div class="d-flex justify-content-center align-items-center my-5 gap-5">
-    <button class="btn btn-outline-info" routerLink="/home">
-      Regresar
-    </button>
-    <button (click)="checkInputs()" class="btn btn-add" type="submit">
+    <button (click)="checkInputs()" class="btn btn-danger" type="submit">
       Agregar
     </button>
   </div>
